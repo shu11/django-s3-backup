@@ -5,7 +5,7 @@ Backup all applications to Amazon S3  in INSTALLED_APPS of django project like l
 
 Authors
 ----------------
-- project started by Shuichi Mitarai (http://www.phactory.jp)
+- project started by Shuichi Mitarai (http://www.phactory.jp and CTO of http://lafla.co.jp)
 
 Features
 ----------------
