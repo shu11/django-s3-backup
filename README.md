@@ -17,13 +17,10 @@ Features
 
 License
 ----------------
-MIT-License
+Distributed under the [MIT License][mit].
+[MIT]: http://www.opensource.org/licenses/mit-license.php
 
 Copyright &copy; 2013 Shuichi Mitarai.
-
-Distributed under the [MIT License][mit].
-
-[MIT]: http://www.opensource.org/licenses/mit-license.php
 
 
 Supported options
