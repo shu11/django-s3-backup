@@ -19,7 +19,8 @@ License
 ----------------
 MIT-License
 
-Copyright &copy; 2013 Shuichi Mitarai
+Copyright &copy; 2013 Shuichi Mitarai.
+
 Distributed under the [MIT License][mit].
 
 [MIT]: http://www.opensource.org/licenses/mit-license.php
