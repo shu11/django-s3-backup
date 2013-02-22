@@ -32,9 +32,9 @@ How to User
 ----------------
 * backup
 
-$ python manage.py backup
+   $ python manage.py backup
 
 
 * restore
 
-$ python manage.py restore
+   $ python manage.py restore
