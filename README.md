@@ -19,6 +19,12 @@ License
 ----------------
 MIT-License
 
+Copyright &copy; 2013 Shuichi Mitarai
+Distributed under the [MIT License][mit].
+
+[MIT]: http://www.opensource.org/licenses/mit-license.php
+
+
 Supported options
 ----------------
 --exclude=[table_names]   exclude to backup or restore.
