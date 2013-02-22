@@ -10,9 +10,10 @@ Authors
 Features
 ----------------
 - backup and restore command for django-admin.py and manage.py. It's like a loaddata/dumpdata.
-- Transfer backups to Amazon S3
+- Transfer backups to Amazon S3 as JSON format.
+- It can be also used as database migration tool from Postgresql to Mysql, for example.
 - Memory Efficient stream JSON encoder/decoder are involved.
-- Huge table can dump and restore.
+- can dump and restore huge table.
 - restore all dump data on S3 to local database transaction safely.
 
 License
@@ -26,3 +27,11 @@ Copyright &copy; 2013 Shuichi Mitarai.
 Supported options
 ----------------
 --exclude=[table_names]   exclude to backup or restore.
+
+How to User
+----------------
+* backup
+$ python manage.py backup
+
+* restore
+$ python manage.py restore
