@@ -14,6 +14,7 @@ Features
 - It can be also used as database migration tool from Postgresql to Mysql, for example.
 - Memory Efficient stream JSON encoder/decoder are involved.
 - can dump and restore huge table.
+- thread base parallel upload are supported (python27+).
 - restore all dump data on S3 to local database transaction safely.
 
 License
