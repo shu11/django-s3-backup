@@ -2,8 +2,6 @@
 from django.core.management.base import BaseCommand
 from django.db import DEFAULT_DB_ALIAS
 from optparse import make_option
-from django.conf import settings
-from datetime import datetime
 from django_s3_backup.utils import Restore
 
 
