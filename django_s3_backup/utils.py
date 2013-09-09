@@ -22,7 +22,7 @@ import os, sys, settings, time, random
 
 class BackUp(object):
     _projname = ""
-    _base_dir = getattr(settings, "BASE_DIR", "database")
+    _base_dir = settings.DIRECTORY
     _jsons = []
     _app_list = None
     _s3 = None
@@ -39,7 +39,7 @@ class BackUp(object):
         self._using = using
         
     def get_project_name(self):
-        project_root = getattr(settings, "PROJECT_ROOT", "")
+        project_root = settings.PROJECT_ROOT
         sPos = project_root.rfind("/")
         if ( sPos != -1 ):
             return project_root[sPos+1:]
@@ -59,7 +59,7 @@ class BackUp(object):
         """
         try:
             # ここまで処理が来ていれば、古いものを削除
-            days = getattr(settings, "EXPIRE_DAY", 1)
+            days = settings.EXPIRE_DAYS
             self._s3.delete_old(days)
             return True
         except:
@@ -227,13 +227,14 @@ class S3(object):
     セットしておくこと。当該情報をアカウント情報として利用する。
     """
     _conn = None
-    _bucket_name = "lafla.co.jp"        # デフォルト値。変更可。
+    _bucket_name = settings.BUCKET        # デフォルト値。変更可。
     _bucket = None
     _n_threads = 20
     def __init__(self):
-        is_https = getattr(settings, "HTTPS", True)
-        self._conn = S3Connection(is_secure=is_https,
-                                  host=getattr(settings, "S3_END_POINT", "s3-ap-northeast-1.amazonaws.com"))
+        self._conn = S3Connection(aws_access_key_id=settings.ACCESS_KEY,
+                                 aws_secret_access_key=settings.SECRET_KEY,
+                                 host=settings.DOMAIN,
+                                 is_secure=settings.IS_SECURE)
         self._bucket = self.get_or_insert_bucket(self._bucket_name)
         print "connect %s of S3 success." % self._bucket
         today = datetime.now()
@@ -362,7 +363,7 @@ class S3(object):
 
     def get_chunks(self, fsize):
         chunks = []
-        min_block_size = getattr(settings, "MULTI_UPLOAD_THREASHOLD_SIZE", 0) 
+        min_block_size = settings.MULTI_UPLOAD_THREASHOLD_SIZE
         if ( fsize <= min_block_size ):
             # 5mb未満の場合はmulti-part転送しない
             chunks.append( (0, fsize) )
@@ -499,7 +500,7 @@ class Restore(object):
         self._s3 = S3()
         self._commit = use_transaction
         self._using = using
-        self._base_dir = getattr(settings, "BASE_DIR", "database")
+        self._base_dir = settings.DIRECTORY
         self._projname = self.get_project_name()
         # アプリ参照関係を調べて依存していないテーブルから順に処理できるリストを作成
         app_list = SortedDict((app, None) for app in get_apps() if app not in excludes)
@@ -509,7 +510,7 @@ class Restore(object):
         self._db = DEFAULT_DB_ALIAS
 
     def get_project_name(self):
-        project_root = getattr(settings, "PROJECT_ROOT", "")
+        project_root = settings.PROJECT_ROOT
         sPos = project_root.rfind("/")
         if ( sPos != -1 ):
             return project_root[sPos+1:]
